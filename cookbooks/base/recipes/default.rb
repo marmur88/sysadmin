@@ -11,3 +11,11 @@ cookbook_file "/home/michal/.screenrc" do
   mode "0644"
   source "screenrc"
 end
+
+cookbook_file "/home/michal/.vimrc" do
+  owner "michal"
+  mode "0644"
+  source "vim"
+end
+
+
