@@ -8,17 +8,29 @@
 
 package "monit"
 
-cookbook_file "/etc/monit/conf.d/postfix" do
-  source "postfix"
-  notifies :restart, "service[monit]"
-end
+service "monit"
 
-template "/etc/default/monit" do
-  source "monit.erb"
+cookbook_file "/etc/default/monit" do
+  source "monit"
   mode 0644
   owner "root"
   group "root"
   notifies :restart, "service[monit]"
 end
 
-service "monit"
+template "/etc/monit/monitrc" do
+  source "monitrc.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[monit]"
+end
+
+cookbook_file "/etc/monit/conf.d/postfix" do
+  source "postfix"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[monit]"
+end
+
