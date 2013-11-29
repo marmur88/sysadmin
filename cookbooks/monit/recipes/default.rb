@@ -20,7 +20,7 @@ end
 
 template "/etc/monit/monitrc" do
   source "monitrc.erb"
-  mode 0644
+  mode 0700
   owner "root"
   group "root"
   notifies :restart, "service[monit]"
