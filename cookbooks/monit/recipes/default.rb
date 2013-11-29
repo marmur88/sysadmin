@@ -26,6 +26,15 @@ template "/etc/monit/monitrc" do
   notifies :restart, "service[monit]"
 end
 
+cookbook_file "/etc/monit/conf.d/sshd" do
+  source "sshd"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[monit]"
+end
+
+
 cookbook_file "/etc/monit/conf.d/postfix" do
   source "postfix"
   mode 0644
